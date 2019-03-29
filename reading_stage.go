@@ -80,16 +80,27 @@ func parseLine(line []string) (id int, lat, lng float64, ts int64, errors string
 	var errs []string
 
 	id, err := strconv.Atoi(line[0])
-	errs = append(errs, err.Error())
+
+	if err != nil {
+		errs = append(errs, err.Error())
+	}
 
 	lat, err = strconv.ParseFloat(line[1], 64)
-	errs = append(errs, err.Error())
+
+	if err != nil {
+		errs = append(errs, err.Error())
+	}
 
 	lng, err = strconv.ParseFloat(line[2], 64)
-	errs = append(errs, err.Error())
+
+	if err != nil {
+		errs = append(errs, err.Error())
+	}
 
 	ts, err = strconv.ParseInt(line[3], 10, 64)
-	errs = append(errs, err.Error())
+	if err != nil {
+		errs = append(errs, err.Error())
+	}
 
 	return id, lat, lng, ts, strings.Join(errs, "\n")
 }
