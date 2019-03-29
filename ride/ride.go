@@ -33,7 +33,7 @@ func (ride *Ride) PrepareSegments() {
 		ok, segment := segmentForPositions(positionB, positionA)
 
 		if ok {
-			rideSegments = append(ride.segments, segment)
+			rideSegments = append(rideSegments, segment)
 			positionA = ride.positions[index]
 		}
 	}
