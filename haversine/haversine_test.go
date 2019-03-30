@@ -15,6 +15,6 @@ func TestHaversineDistance(t *testing.T) {
 	distance := big.NewFloat(haversineResult)
 
 	if expectedDistance.Cmp(distance) != 0 {
-		t.Errorf("Wrong estimation. Expected: %f, got: %f", 0.005389130468647274, haversineResult)
+		t.Errorf("Wrong Haversine estimation. Expected: %f, got: %f", 0.005389130468647274, haversineResult)
 	}
 }
