@@ -64,7 +64,12 @@ func TestTimeDeltaInHours(t *testing.T) {
 	tsA := int64(1483268400)
 	tsB := int64(1483275600)
 
-	if timeDeltaInHours(tsB, tsA) != 2.00 {
-		t.Error("Time difference should be 2.00 hours...")
+	expectedTimeDif := big.NewFloat(2.00)
+	timeDif := timeDeltaInHours(tsB, tsA)
+
+	calculatedTimeDif := big.NewFloat(timeDif)
+
+	if expectedTimeDif.Cmp(calculatedTimeDif) != 2.00 {
+		t.Errorf("Time difference should be %f hours, got %f ...", 2.00, timeDif)
 	}
 }

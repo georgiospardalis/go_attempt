@@ -18,10 +18,12 @@ func distanceInKm(positionB, positionA Position) float64 {
 }
 
 func timeDeltaInHours(timestampB, timestampA int64) float64 {
-	timestampDiff := timestampB - timestampA
-	diffTime := time.Unix(timestampDiff, 0)
+	timeA := time.Unix(timestampA,0)
+	timeB := time.Unix(timestampB, 0)
 
-	return float64(diffTime.Second()) / 3600.00
+	diff := timeB.Sub(timeA)
+
+	return diff.Hours()
 }
 
 func wasHighRate(startTimestamp int64) bool {
