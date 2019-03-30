@@ -1,8 +1,6 @@
 package haversine
 
-import (
-	"math"
-)
+import "math"
 
 const rEarth = 6372.8 // in km
 
