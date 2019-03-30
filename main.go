@@ -12,8 +12,8 @@ func main() {
 	channelBuffer := cpuCoresAvailable * 5
 
 	if len(os.Args) < 3 {
-		log.Fatal("Not enough command line arguments provided...")
-		return
+		log.Fatal("Not enough arguments. Please, provide absolute file paths...\n" +
+			"Usage: [application_executable] [input_file] [output_file]")
 	}
 
 	fileToRead := os.Args[1]

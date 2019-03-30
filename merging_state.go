@@ -3,7 +3,7 @@ package main
 import "sync"
 
 func merge(channelBuffer int, channels []<-chan []string) <-chan []string {
-	var wg sync.WaitGroup
+	var waitGroup sync.WaitGroup
 
 	mergedOut := make(chan []string, channelBuffer)
 
@@ -12,17 +12,17 @@ func merge(channelBuffer int, channels []<-chan []string) <-chan []string {
 			mergedOut <- channelOutput
 		}
 
-		wg.Done()
+		waitGroup.Done()
 	}
 
-	wg.Add(len(channels))
+	waitGroup.Add(len(channels))
 
 	for _, channel := range channels {
 		go output(channel)
 	}
 
 	go func() {
-		wg.Wait()
+		waitGroup.Wait()
 
 		close(mergedOut)
 	}()

@@ -1,9 +1,9 @@
 package main
 
 import (
-	"github.com/georgiospardalis/beat_assignment/ride"
 	"bufio"
 	"encoding/csv"
+	"github.com/georgiospardalis/beat_assignment/ride"
 	"io"
 	"log"
 	"os"
@@ -21,7 +21,6 @@ func readFromFile(channelBuffer int, absoluteFilePath string) <-chan ride.Ride {
 
 		if err != nil {
 			log.Fatal(err)
-			return
 		}
 
 		reader := csv.NewReader(bufio.NewReader(csvFile))
@@ -33,8 +32,6 @@ func readFromFile(channelBuffer int, absoluteFilePath string) <-chan ride.Ride {
 
 		if len(parseErr) > 0 {
 			log.Fatal(parseErr)
-
-			return
 		}
 
 		ridePositions = append(ridePositions, ride.NewPosition(lat, lng, ts))
@@ -51,20 +48,19 @@ func readFromFile(channelBuffer int, absoluteFilePath string) <-chan ride.Ride {
 				break
 			} else if err != nil {
 				log.Fatal(err)
-				return
 			}
 
 			currentId, lat, lng, ts, parseErr := parseLine(line)
 
 			if len(parseErr) > 0 {
 				log.Fatal(parseErr)
-
-				continue
 			}
 
 			if currentId != previousId {
 				cabRide := ride.NewRide(previousId, ridePositions)
+
 				out <- cabRide
+
 				previousId = currentId
 				ridePositions = nil
 			}
