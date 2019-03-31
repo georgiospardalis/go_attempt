@@ -28,9 +28,9 @@ The app is divided in 3 main  sections:
 - write output data to specified file
 
 This can be also seen through the pipeline where: 
-- a channel is provided with data being read line by line
+- a channel is provided, with data being read line by line
 (`reading_stage`)
-- goroutines that "listen" to this channel would process data,
+- goroutines that "listen" to this channel process data,
   estimate fares and forward the end results to the output channel
   of their own (`processing_stage`)
 - another goroutine merges the output of the aforementioned channels

@@ -10,7 +10,7 @@ import (
 )
 
 func TestPipelineEndToEnd(t *testing.T) {
-	absInputFile, _ := filepath.Abs("./test_utils/dummyInput.csv")
+	absInputFile, _ := filepath.Abs("./test_resources/dummyInput.csv")
 	absOutputFile, _ := filepath.Abs("dummyOutput.csv")
 
 	cliArgs := []string{"dummyApp", absInputFile, absOutputFile}
