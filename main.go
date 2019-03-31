@@ -1,7 +1,7 @@
 package main
 
 import (
-	"encoding/csv"
+	"github.com/georgiospardalis/beat_assignment/pipeline"
 	"log"
 	"os"
 	"runtime"
@@ -19,31 +19,15 @@ func main() {
 	fileToRead := os.Args[1]
 	fileToWrite := os.Args[2]
 
-	readFileChannel := readFromFile(channelBuffer, fileToRead)
+	readFileChannel := pipeline.ReadFromFile(channelBuffer, fileToRead)
 
 	var processChannels []<-chan []string
 
 	for i := 0; i < cpuCoresAvailable; i++ {
-		processChannels = append(processChannels, processRide(channelBuffer, readFileChannel))
+		processChannels = append(processChannels, pipeline.ProcessRide(channelBuffer, readFileChannel))
 	}
 
-	mergedProcessChannels := merge(channelBuffer * cpuCoresAvailable, processChannels)
+	mergedProcessChannels := pipeline.Merge(channelBuffer*cpuCoresAvailable, processChannels)
 
-	file, err := os.Create(fileToWrite)
-	defer file.Close()
-
-	if err != nil {
-		log.Fatal(err)
-	}
-
-	writer := csv.NewWriter(file)
-	defer writer.Flush()
-
-	for line := range mergedProcessChannels {
-		err := writer.Write(line)
-
-		if err != nil {
-			log.Fatal(err)
-		}
-	}
+	pipeline.WriteToFile(fileToWrite, mergedProcessChannels)
 }

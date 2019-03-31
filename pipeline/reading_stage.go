@@ -1,4 +1,4 @@
-package main
+package pipeline
 
 import (
 	"bufio"
@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-func readFromFile(channelBuffer int, absoluteFilePath string) <-chan ride.Ride {
+func ReadFromFile(channelBuffer int, absoluteFilePath string) <-chan ride.Ride {
 	out := make(chan ride.Ride, channelBuffer)
 
 	go func() {

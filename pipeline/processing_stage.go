@@ -1,11 +1,11 @@
-package main
+package pipeline
 
 import (
 	"github.com/georgiospardalis/beat_assignment/ride"
 	"strconv"
 )
 
-func processRide(channelBuffer int, input <-chan ride.Ride) <-chan []string {
+func ProcessRide(channelBuffer int, input <-chan ride.Ride) <-chan []string {
 	out := make(chan []string, channelBuffer)
 
 	go func() {

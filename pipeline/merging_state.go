@@ -1,8 +1,8 @@
-package main
+package pipeline
 
 import "sync"
 
-func merge(channelBuffer int, channels []<-chan []string) <-chan []string {
+func Merge(channelBuffer int, channels []<-chan []string) <-chan []string {
 	var waitGroup sync.WaitGroup
 
 	mergedOut := make(chan []string, channelBuffer)
