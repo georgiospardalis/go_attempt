@@ -1,6 +1,6 @@
-# BEAT Assignment
+# GO Attempt
 ## About
-BEAT Assignment in GoLang - Fare Estimation
+Fare Estimation app
 
 ## Set Up
 Before testing, building or installing the project,
