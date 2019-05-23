@@ -1,6 +1,6 @@
 # GO Attempt
 ## About
-Fare Estimation app
+Cab Ride Fare Estimation app
 
 ## Set Up
 Before testing, building or installing the project,
